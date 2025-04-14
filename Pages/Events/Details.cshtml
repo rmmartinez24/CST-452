@@ -1,0 +1,70 @@
+﻿@page "{id:int}"
+@model events_managments.Pages.Events.DetailsModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Event Details";
+}
+
+@if (Model.Event.IsPrivate && !Model.CodeVerified)
+{
+    <div class="container mt-4">
+        <h2>This event is private.</h2>
+        <p>Please enter the access code to view details:</p>
+        <form method="post" asp-page-handler="Verify" asp-route-id="@Model.Event.Id">
+            <div class="mb-3">
+                <input type="text" class="form-control" asp-for="InputAccessCode" placeholder="Access Code" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="text-danger mt-2">@Model.ErrorMessage</div>
+        }
+    </div>
+}
+else
+{
+    <div class="container mt-4">
+        @* If an image is available, display it *@
+        @if (!string.IsNullOrEmpty(Model.Event.ImagePath))
+        {
+            <div class="mb-4 text-center">
+                <img src="@Model.Event.ImagePath" alt="Event Image" class="img-fluid rounded shadow" style="max-height:300px;" />
+            </div>
+        }
+
+        <h1 class="mb-4">@Model.Event.Title</h1>
+        <p class="lead">@Model.Event.Description</p>
+        <p><strong>Date:</strong> @Model.Event.EventDate.ToShortDateString()</p>
+        <p><strong>Location:</strong> @Model.Event.Location</p>
+
+        @if (User.Identity.IsAuthenticated && Model.UserRegistration != null)
+        {
+            <p>
+                <strong>Your RSVP:</strong>
+                @if (Model.UserRegistration.IsAttending)
+                {
+                    <span class="text-success">Attending</span>
+                }
+                else
+                {
+                    <span class="text-danger">Not Attending</span>
+                }
+            </p>
+            <form method="post" asp-page-handler="ToggleRSVP" asp-route-id="@Model.Event.Id">
+                <button type="submit" class="btn btn-info">
+                    @if (Model.UserRegistration.IsAttending)
+                    {
+                        @:Cancel RSVP
+                    }
+                    else
+                    {
+                        @:RSVP
+                    }
+                </button>
+            </form>
+        }
+
+        <a asp-page="./Index" class="btn btn-secondary mt-3">Back to Events List</a>
+    </div>
+}

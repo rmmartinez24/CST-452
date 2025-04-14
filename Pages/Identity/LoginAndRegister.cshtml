@@ -1,0 +1,63 @@
+﻿@page
+@model events_managments.Pages.Identity.LoginAndRegisterModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Login / Register";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Login / Register</h1>
+    <div class="row">
+        <!-- Login Section -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Login</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="Login">
+                        <div class="mb-3">
+                            <label asp-for="LoginInput.Email" class="form-label"></label>
+                            <input asp-for="LoginInput.Email" class="form-control" placeholder="Enter your email" />
+                            <span asp-validation-for="LoginInput.Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="LoginInput.Password" class="form-label"></label>
+                            <input asp-for="LoginInput.Password" type="password" class="form-control" placeholder="Enter your password" />
+                            <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Registration Section -->
+        <div class="col-md-6 mt-4 mt-md-0">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Register</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="Register">
+                        <div class="mb-3">
+                            <label asp-for="RegisterInput.Email" class="form-label"></label>
+                            <input asp-for="RegisterInput.Email" class="form-control" placeholder="Enter your email" />
+                            <span asp-validation-for="RegisterInput.Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="RegisterInput.Password" class="form-label"></label>
+                            <input asp-for="RegisterInput.Password" type="password" class="form-control" placeholder="Enter your password" />
+                            <span asp-validation-for="RegisterInput.Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="RegisterInput.ConfirmPassword" class="form-label"></label>
+                            <input asp-for="RegisterInput.ConfirmPassword" type="password" class="form-control" placeholder="Confirm your password" />
+                            <span asp-validation-for="RegisterInput.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

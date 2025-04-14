@@ -1,0 +1,63 @@
+﻿@page
+@model events_managments.Pages.Events.CreateModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Create Event";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Create a New Event</h1>
+    <form method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <!-- Event Title -->
+        <div class="mb-3">
+            <label asp-for="NewEvent.Title" class="form-label"></label>
+            <input asp-for="NewEvent.Title" class="form-control" />
+            <span asp-validation-for="NewEvent.Title" class="text-danger"></span>
+        </div>
+
+        <!-- Event Description -->
+        <div class="mb-3">
+            <label asp-for="NewEvent.Description" class="form-label"></label>
+            <textarea asp-for="NewEvent.Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="NewEvent.Description" class="text-danger"></span>
+        </div>
+
+        <!-- Event Date -->
+        <div class="mb-3">
+            <label asp-for="NewEvent.EventDate" class="form-label"></label>
+            <input asp-for="NewEvent.EventDate" type="date" class="form-control" />
+            <span asp-validation-for="NewEvent.EventDate" class="text-danger"></span>
+        </div>
+
+        <!-- Event Location -->
+        <div class="mb-3">
+            <label asp-for="NewEvent.Location" class="form-label"></label>
+            <input asp-for="NewEvent.Location" class="form-control" />
+            <span asp-validation-for="NewEvent.Location" class="text-danger"></span>
+        </div>
+
+        <!-- Private Event Checkbox -->
+        <div class="mb-3 form-check">
+            <input asp-for="NewEvent.IsPrivate" class="form-check-input" id="privateCheck" />
+            <label asp-for="NewEvent.IsPrivate" class="form-check-label">Private Event</label>
+        </div>
+
+        <!-- Access Code Field (Optional) -->
+        <div class="mb-3">
+            <label asp-for="NewEvent.AccessCode" class="form-label">Access Code</label>
+            <input asp-for="NewEvent.AccessCode" class="form-control" placeholder="Enter access code (optional)" />
+            <span asp-validation-for="NewEvent.AccessCode" class="text-danger"></span>
+        </div>
+
+        <!-- Optional: Event Image Upload (Renamed to 'imageFile') -->
+        <div class="mb-3">
+            <label class="form-label">Event Image (optional)</label>
+            <input type="file" name="imageFile" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Create Event</button>
+        <a asp-page="./Index" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

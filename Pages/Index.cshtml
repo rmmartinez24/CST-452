@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container my-5">
+    <!-- Centered Welcome Heading -->
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h1 class="display-4">Welcome to</h1>
+            <h1 class="display-4">Events Management</h1>
+        </div>
+    </div>
+    <!-- Two-Column Layout: Image on the Left, Description on the Right -->
+    <div class="row align-items-center">
+        <!-- Left Column: Image -->
+        <div class="col-md-6">
+            <img src="~/images/welcome.jpg" alt="Event Management" class="img-fluid rounded shadow">
+        </div>
+        <!-- Right Column: Description & Button -->
+        <div class="col-md-6">
+            <p class="lead">
+                Organize, create, and manage your events effortlessly with our modern, user-friendly platform.
+                Our system is designed to simplify the event planning process, making it easier for you to focus on what matters most.
+            </p>
+            <div class="text-center">
+                <a href="/Events/Index" class="btn btn-primary btn-lg">View Events</a>
+            </div>
+        </div>
+    </div>
+</div>

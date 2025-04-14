@@ -1,0 +1,43 @@
+﻿@page
+@model events_managments.Pages.Events.IndexModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "All Events";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">All Events</h1>
+    <p>
+        <a asp-page="./Create" class="btn btn-primary">Create New Event</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Events != null && Model.Events.Any())
+            {
+                foreach (var evt in Model.Events)
+                {
+                    <tr>
+                        <td>
+                            <a asp-page="./Details" asp-route-id="@evt.Id">@evt.Title</a>
+                        </td>
+                        <td>@evt.EventDate.ToShortDateString()</td>
+                        <td>@evt.Location</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="text-center">No events available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
